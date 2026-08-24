@@ -40,6 +40,7 @@ const Components = {
       { label: "EDUCATION", href: "#education" },
       { label: "EXPERIENCE", href: "#experience" },
       { label: "PROJECTS", href: "#projects" },
+      { label: "PHOTO GALLERY", href: "#photo-gallery" },
       { label: "CERTIFICATIONS", href: "#certifications" },
       { label: "EXTRA-CURRICULAR", href: "#extracurricular" },
       { label: "CONTACT", href: "#contact" }
@@ -593,6 +594,81 @@ const Components = {
             <!-- Row 2: 2 Cards Centered -->
             <div class="intern-grid-row intern-grid-row-2">
               ${row2Html}
+            </div>
+          </div>
+
+        </div>
+      </section>
+    `;
+  },
+
+  // Photo Gallery (Stacked / Overlapping 3D Carousel)
+  renderPhotoGallery(data) {
+    const gallery = data.photoGallery || {
+      heading: "PHOTO GALLERY",
+      subtitle: "A glimpse into my internship experience, events, projects and professional journey.",
+      images: []
+    };
+
+    const totalImages = gallery.images.length;
+    const cardsHtml = gallery.images
+      .map((img, idx) => {
+        return `
+        <div class="gallery-photo-card" data-gallery-index="${idx}" role="group" aria-roledescription="slide" aria-label="Photo ${idx + 1} of ${totalImages}">
+          <div class="gallery-card-inner">
+            <img src="${img.src}" alt="${img.alt || 'Photo ' + (idx + 1)}" class="gallery-photo-img" loading="lazy" />
+            <div class="gallery-card-overlay"></div>
+          </div>
+          ${img.caption ? `<div class="gallery-card-caption">${img.caption}</div>` : ''}
+        </div>`;
+      })
+      .join("");
+
+    return `
+      <section class="photo-gallery-section section-padding" id="photo-gallery" aria-label="Photo Gallery Carousel">
+        <div class="container">
+          
+          <div class="section-header text-center gallery-header-center">
+            <span class="section-tag">${gallery.tag || "PHOTO GALLERY"}</span>
+            <h2 class="section-title">${gallery.heading || "PHOTO GALLERY"}</h2>
+            <p class="section-subtitle">${gallery.subtitle || "A glimpse into my internship experience, events, projects and professional journey."}</p>
+          </div>
+
+          <div class="photo-gallery-carousel-wrapper" id="photoGalleryWrapper">
+            
+            <!-- Left Prev Button -->
+            <button class="gallery-nav-btn gallery-prev-btn" id="photoGalleryPrev" aria-label="Previous photo">
+              ${Icons.chevronLeft}
+              <span class="gallery-btn-text">PREVIOUS</span>
+            </button>
+
+            <!-- Carousel Visual Stage -->
+            <div class="photo-gallery-stage" id="photoGalleryStage" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Photo Gallery Stack">
+              <div class="photo-gallery-track" id="photoGalleryTrack">
+                ${cardsHtml}
+              </div>
+            </div>
+
+            <!-- Right Next Button -->
+            <button class="gallery-nav-btn gallery-next-btn" id="photoGalleryNext" aria-label="Next photo">
+              <span class="gallery-btn-text">NEXT</span>
+              ${Icons.chevronRight}
+            </button>
+
+          </div>
+
+          <!-- Bottom Gallery Indicators & Mobile Controls -->
+          <div class="gallery-bottom-bar">
+            <div class="gallery-counter" id="photoGalleryCounter">
+              <span class="gallery-counter-current">01</span> / <span class="gallery-counter-total">${String(totalImages).padStart(2, "0")}</span>
+            </div>
+            
+            <div class="gallery-dots-indicator" id="photoGalleryDots">
+              ${gallery.images.map((_, i) => `<button class="gallery-dot ${i === 0 ? 'active' : ''}" data-gallery-dot="${i}" aria-label="Go to photo ${i + 1}"></button>`).join("")}
+            </div>
+
+            <div class="gallery-active-caption-display" id="galleryActiveCaption">
+              ${gallery.images[0] && gallery.images[0].caption ? gallery.images[0].caption : ''}
             </div>
           </div>
 

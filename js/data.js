@@ -468,5 +468,38 @@ With hands-on experience in business analytics, sales auditing, KPI tracking, an
         icon: "github"
       }
     ]
+  },
+
+  photoGallery: {
+    tag: "05. PHOTO GALLERY",
+    heading: "PHOTO GALLERY",
+    subtitle: "A glimpse into my internship experience, events, projects and professional journey.",
+    images: [
+      {
+        src: "assets/gallery/photo-01.jpg",
+        alt: "Sumit Kumar Suman and team during internship conference table discussion at Zorgers",
+        caption: "Internship Review & Strategic Team Meeting at Zorgers"
+      },
+      {
+        src: "assets/gallery/photo-02.jpg",
+        alt: "Sumit Kumar Suman with Zorgers internship cohort",
+        caption: "Business Analytics Practicum Cohort at Zorgers"
+      },
+      {
+        src: "assets/gallery/photo-03.jpg",
+        alt: "Sumit Kumar Suman receiving internship certificate and memento",
+        caption: "Internship Recognition & Practicum Completion"
+      },
+      {
+        src: "assets/gallery/photo-04.jpg",
+        alt: "Sumit Kumar Suman and analytics team at The Vintage Club Assisted Living facility",
+        caption: "On-site Field Analytics & Operations at The Vintage Assisted Living"
+      },
+      {
+        src: "assets/gallery/photo-05.jpg",
+        alt: "Sumit Kumar Suman celebrating with Zorgers company team",
+        caption: "Zorgers Organization Team & Milestone Celebration"
+      }
+    ]
   }
 };
